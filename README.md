@@ -7,8 +7,7 @@ This is Pitt CSC's version of GitHub's chat bot, hubot. It's pretty cool.
 
 You can test hubot in your shell by running `bin/hubot`.
 
-You'll see some startup output about where your scripts come from and a
-prompt:
+You'll see some startup output and a prompt:
 
     [Sun, 04 Dec 2011 18:41:11 GMT] INFO Loading adapter shell
     [Sun, 04 Dec 2011 18:41:11 GMT] INFO Loading scripts from /home/tomb/Development/hubot/scripts
