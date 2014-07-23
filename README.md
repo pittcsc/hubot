@@ -30,6 +30,7 @@ Then you can interact with hubot:
 
 Read more on what you can do with hubot in the [Scripting Guide](https://github.com/github/hubot/blob/master/docs/scripting.md).
 
+
 ## Deployment
 
 Our hubot is hosted on [Heroku](https://heroku.com). If you have deployment permissions, you can deploy hubot updates by pushing to Heroku:
@@ -42,10 +43,10 @@ Please don't deploy any changes that haven't been pushed to GitHub yet.
 
 Hubot's behavior on Heroku is configured via several environment variables:
 
-    HEROKU_URL:          http://pitt-csc-hubot.herokuapp.com
+    HEROKU_URL:          [...]
     HUBOT_SLACK_BOTNAME: hubot
     HUBOT_SLACK_TEAM:    pittcsc
-    HUBOT_SLACK_TOKEN:   [redacted]
+    HUBOT_SLACK_TOKEN:   [...]
 
 Changing any of these variables will require restarting the hubot application.
 
