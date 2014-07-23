@@ -1,6 +1,6 @@
 # Hubot
 
-This is Pitt CSC's version of GitHub's chat bot, hubot. He's pretty cool.
+This is Pitt CSC's version of GitHub's chat bot, hubot. It's pretty cool.
 
 
 ### Testing Hubot Locally
@@ -52,7 +52,7 @@ Changing any of these variables will require restarting the hubot application.
 
 ### Troubleshooting
 
-In the event that hubot crashes, anyone with deployment permissions may restart him or diagnose the problem using the [Heroku Toolbelt](https://toolbelt.heroku.com/):
+In the event that hubot crashes, anyone with deployment permissions may restart it or diagnose the problem using the [Heroku Toolbelt](https://toolbelt.heroku.com/):
 
     heroku restart
     heroku logs
