@@ -1,21 +1,24 @@
 module.exports = (robot) ->
+  ROOMS = ['#alltalk']
+
   handlePageBuild = (details) ->
     if {build, repository} = details
       pusher = build.pusher?.login
       commit = build.commit?.substring(0, 10)
 
       message = if build.status is 'built'
-        "Successful GitHub Pages build for `#{repository.full_name}` at `#{commit}` by #{pusher}."
-      else if error = build.error
+        "GitHub Pages build succeeded for `#{repository.full_name}` at `#{commit}` by #{pusher}."
+      else if error = build.error?.message
         """
-        Failed GitHub Pages build for `#{repository.full_name}` at `#{commit}` by #{pusher}:
+        GitHub Pages build failed for `#{repository.full_name}` at `#{commit}` by #{pusher}:
 
         ```
-        #{error.message}
+        #{error}
         ```
         """
 
-      robot.messageRoom('#alltalk', message)
+      if message
+        robot.messageRoom(room, message) for room in ROOMS
 
   robot.router.post '/hubot/github_webhook', (req, res) ->
     if req.is('json')
