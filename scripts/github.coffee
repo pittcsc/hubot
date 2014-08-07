@@ -2,7 +2,7 @@ util = require 'util'
 
 module.exports = (robot) ->
   handlePageBuild = (details) ->
-    if build = details.build and repository = details.repository
+    if {build, repository} = details
       pusher = build.pusher?.login
       commit = build.commit?.substring(0, 10)
 
