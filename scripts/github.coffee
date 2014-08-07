@@ -3,16 +3,16 @@ util = require 'util'
 module.exports = (robot) ->
   handlePageBuild = (details) ->
     if build = details.build
-      console.log util.inspect(build)
-      repository = build.repository
+      repository_name = details.repository?.full_name
+      repository_url = details.repository?.html_url
       pusher = build.pusher
       commit = build.commit
 
-      message = if details.build.status is 'built'
-        "Successful GitHub Pages build for [#{repository.full_name}](#{repository.html_url}) at #{commit} by #{pusher.login}."
-      else if error = details.build.error
+      message = if build.status is 'built'
+        "Successful GitHub Pages build for [#{repository_name}](#{repository_url}) at #{commit} by #{pusher.login}."
+      else if error = build.error
         """
-        Failed GitHub Pages build for [#{repository.full_name}](#{repository.html_url}) at #{commit} by #{pusher.login}:
+        Failed GitHub Pages build for [#{repository_name}](#{repository_url}) at #{commit} by #{pusher.login}:
 
         ```
         #{error.message}
