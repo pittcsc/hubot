@@ -1,5 +1,3 @@
-util = require 'util'
-
 module.exports = (robot) ->
   handlePageBuild = (details) ->
     if {build, repository} = details
