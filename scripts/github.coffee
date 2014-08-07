@@ -3,7 +3,7 @@ util = require 'util'
 module.exports = (robot) ->
   handlePageBuild = (details) ->
     if build = details.build
-      console.log Util.inspect(build)
+      console.log util.inspect(build)
       repository = build.repository
       pusher = build.pusher
       commit = build.commit
