@@ -4,15 +4,14 @@ module.exports = (robot) ->
   handlePageBuild = (details) ->
     if build = details.build
       repository_name = details.repository?.full_name
-      repository_url = details.repository?.html_url
       pusher = build.pusher
-      commit = build.commit
+      commit = build.commit.substring(0, 10)
 
       message = if build.status is 'built'
-        "Successful GitHub Pages build for [#{repository_name}](#{repository_url}) at #{commit} by #{pusher.login}."
+        "Successful GitHub Pages build for `#{repository_name}` at `#{commit}` by #{pusher.login}."
       else if error = build.error
         """
-        Failed GitHub Pages build for [#{repository_name}](#{repository_url}) at #{commit} by #{pusher.login}:
+        Failed GitHub Pages build for `#{repository_name}` at `#{commit}` by #{pusher.login}:
 
         ```
         #{error.message}
