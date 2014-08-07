@@ -23,6 +23,6 @@ module.exports = (robot) ->
       event = req.header('X-GitHub-Event')
 
       switch event
-        when 'page_build' handlePageBuild(req.body)
+        when 'page_build' then handlePageBuild(req.body)
 
     res.send(200, 'ok')
