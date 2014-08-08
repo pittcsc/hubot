@@ -22,9 +22,9 @@ module.exports = (robot) ->
 
   robot.router.post '/hubot/github_webhook', (req, res) ->
     if req.is('json')
-      event = req.header('X-GitHub-Event')
-
-      switch event
+      switch req.header('X-GitHub-Event')
         when 'page_build' then handlePageBuild(req.body)
 
-    res.send(200, 'ok')
+      res.send(200)
+    else
+      res.send(400)
