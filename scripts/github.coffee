@@ -1,7 +1,7 @@
 module.exports = (robot) ->
   ROOMS = ['#alltalk']
 
-  handlePageBuild = (details) ->
+  receivePageBuild = (details) ->
     if {build, repository} = details
       pusher = build.pusher?.login
       commit = build.commit?.substring(0, 10)
@@ -23,7 +23,7 @@ module.exports = (robot) ->
   robot.router.post '/hubot/github_webhook', (req, res) ->
     if req.is('json')
       switch req.header('X-GitHub-Event')
-        when 'page_build' then handlePageBuild(req.body)
+        when 'page_build' then receivePageBuild(req.body)
 
       res.send(200)
     else
