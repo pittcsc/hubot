@@ -11,7 +11,7 @@ module.exports = (robot) ->
     commit = build.commit.substring(0, 10)
 
     switch build.status
-      when 'build'
+      when 'built'
         "GitHub Pages build succeeded for `#{repository.full_name}` at `#{commit}` by #{pusher}."
       when 'errored'
         """
