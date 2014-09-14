@@ -199,7 +199,7 @@ module.exports = (robot) ->
     get "show/#{app}", { }, (err, statusCode, body) ->
       reply = if statusCode is 200
         repo = JSON.parse(body)
-        lines = "#{key}: #{val}" for key, val of repo
+        lines = "#{key}: #{val}" for key, val of app
 
         lines.join("\n")
       else
