@@ -170,7 +170,7 @@ module.exports = (robot) ->
 
   robot.respond /ci builds ([0-9]+) (building)?$/i, (msg) ->
     limit = msg.match[1]
-    building = msg.match[2] is 'building'
+    building = msg.match[2]?
 
     get "builds?limit=#{limit}&building=#{building}", {}, (err, statusCode, body) ->
       builds = JSON.parse(body)
