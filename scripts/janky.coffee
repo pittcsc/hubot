@@ -23,8 +23,7 @@ buildStatusMessages = (builds) ->
   response
 
 buildStatusMessage = (build) ->
-  response = ""
-  response += "Build ##{build.number} (#{build.sha1}) of #{build.repo}/#{build.branch} #{build.status}"
+  response = "Build ##{build.number} (#{build.sha1}) of #{build.repo}/#{build.branch} #{build.status}"
   response += "(#{build.duration}s) #{build.compare}"
   response += " [Log: #{build.web_url}]"
 
@@ -78,7 +77,7 @@ module.exports = (robot) ->
       else
         "Sorry, I couldn't get the CI help."
 
-      msg.reply(reply)
+      msg.send(reply)
 
   robot.respond /ci build ([-_\.0-9a-zA-Z]+)(\/([-_\+\.a-zA-z0-9\/]+))?/i, (msg) ->
     app = msg.match[1]
@@ -87,12 +86,14 @@ module.exports = (robot) ->
     user = msg.message.user.name.replace(/\ /g, "+")
 
     post "#{app}/#{branch}?room_id=#{roomId}&user=#{user}", {}, (err, statusCode, body) ->
-      reply = if statusCode is 201 or statusCode is 404
+      reply = if statusCode is 201
+        "Going ham on #{app}/#{branch}!"
+      else if statusCode is 404
         body
       else
         "Sorry, I couldn't build #{app}."
 
-      msg.reply(reply)
+      msg.send(reply)
 
   robot.respond /ci setup ([\.\-\/_a-z0-9]+)(\s([\.\-_a-z0-9]+)(\s([\.\-_a-z0-9]+))?)?/i, (msg) ->
     nwo = msg.match[1]
@@ -103,11 +104,11 @@ module.exports = (robot) ->
 
     post "setup#{params}", {}, (err, statusCode, body) ->
       reply = if statusCode is 201
-        body
+        "OK, I set up #{app} for CI!"
       else
         "Sorry, I couldn't set up CI for that project."
 
-      msg.reply(reply)
+      msg.send(reply)
 
   robot.respond /ci toggle ([-_\.0-9a-zA-Z]+)/i, (msg) ->
     app = msg.match[1]
@@ -117,6 +118,8 @@ module.exports = (robot) ->
         body
       else
         "Sorry, I couldn't toggle CI for that project."
+
+      msg.send(reply)
 
   robot.respond /ci set room ([-_0-9a-zA-Z\.]+) (.*)$/i, (msg) ->
     repo = msg.match[1]
@@ -128,7 +131,7 @@ module.exports = (robot) ->
       else
         "Hmm, I couldn't update the room!"
 
-      msg.reply(reply)
+      msg.send(reply)
 
   robot.respond /ci set context ([-_0-9a-zA-Z\.]+) (.*)$/i, (msg) ->
     repo = msg.match[1]
@@ -140,7 +143,7 @@ module.exports = (robot) ->
       else
         "I couldn't update the context. Sorry!"
 
-      msg.reply(reply)
+      msg.send(reply)
 
   robot.respond /ci unset context ([-_0-9a-zA-Z\.]+)$/i, (msg) ->
     repo = msg.match[1]
@@ -151,7 +154,7 @@ module.exports = (robot) ->
       else
         "Whoops, I couldn't unset the context."
 
-      msg.reply(reply)
+      msg.send(reply)
 
   robot.respond /ci rooms$/i, (msg) ->
     get "rooms", { }, (err, statusCode, body) ->
@@ -161,7 +164,7 @@ module.exports = (robot) ->
       else
         "I can't predict rooms right now."
 
-    msg.reply(reply)
+    msg.send(reply)
 
   robot.respond /ci builds ([0-9]+) (building)?$/i, (msg) ->
     limit = msg.match[1]
@@ -171,18 +174,22 @@ module.exports = (robot) ->
       builds = JSON.parse(body)
       reply = buildStatusMessages(builds) || "Builds? What builds?"
 
-      msg.reply(reply)
+      msg.send(reply)
 
   robot.respond /ci status( (\*\/[-_\+\.a-zA-z0-9\/]+))?$/i, (msg) ->
     path = if msg.match[2] then "/#{msg.match[2]}" else ""
 
     get path, {}, (err, statusCode, body) ->
       reply = if statusCode is 200
-        body
+        """
+        Here are the latest build statuses:
+
+        #{body}
+        """
       else
         "Couldn't check statuses. Maybe something's wrong."
 
-      msg.reply(reply)
+      msg.send(reply)
 
   robot.respond /ci show ([-_\.0-9a-zA-Z]+)/i, (msg) ->
     app = msg.match[1]
@@ -196,7 +203,7 @@ module.exports = (robot) ->
       else
         "Sorry, I can't seem to show that right now."
 
-      msg.reply(reply)
+      msg.send(reply)
 
   robot.respond /ci delete ([-_\.0-9a-zA-Z]+)/i, (msg) ->
     app = msg.match[1]
@@ -207,4 +214,4 @@ module.exports = (robot) ->
       else
         "I couldn't delete that!"
 
-      msg.reply(body)
+      msg.send(body)
