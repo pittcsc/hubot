@@ -3,6 +3,5 @@
   "announce.coffee",
   "xkcd.coffee",
   "ascii.coffee",
-  "base64.coffee",
-  "janky.coffee"
+  "base64.coffee"
 ]
