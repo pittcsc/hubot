@@ -122,14 +122,14 @@ module.exports = (robot) ->
       msg.send(reply)
 
   robot.respond /ci set room ([-_0-9a-zA-Z\.]+) (.*)$/i, (msg) ->
-    repo = msg.match[1]
-    room = encodeURIComponent(msg.match[2])
+    app = msg.match[1]
+    room = msg.match[2]
 
-    put "#{repo}?room=#{room}", {}, (err, statusCode, body) ->
+    put "#{repo}?room=#{encodeURIComponent(room)}", {}, (err, statusCode, body) ->
       reply = if [404, 403, 200].indexOf(statusCode) > -1
-        body
+        "Room for #{app} updated to #{room}."
       else
-        "Hmm, I couldn't update the room!"
+        "Hmm, I couldn't update the room for #{app}!"
 
       msg.send(reply)
 
@@ -187,7 +187,7 @@ module.exports = (robot) ->
         #{body}
         """
       else
-        "Couldn't check statuses. Maybe something's wrong."
+        "Couldn't get any statuses. Maybe something's wrong."
 
       msg.send(reply)
 
