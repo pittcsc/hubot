@@ -125,7 +125,7 @@ module.exports = (robot) ->
     app = msg.match[1]
     room = msg.match[2]
 
-    put "#{repo}?room=#{encodeURIComponent(room)}", {}, (err, statusCode, body) ->
+    put "#{app}?room=#{encodeURIComponent(room)}", {}, (err, statusCode, body) ->
       reply = if statusCode is 200
         "Room for #{app} updated to #{room}."
       else if statusCode in [404, 403]
