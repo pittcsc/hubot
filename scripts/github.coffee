@@ -1,5 +1,5 @@
 module.exports = (robot) ->
-  ROOMS = ['#alltalk']
+  ROOMS = ['#website']
 
   receivePageBuild = (details) ->
     if {build, repository, error} = details
