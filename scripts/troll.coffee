@@ -1,5 +1,6 @@
 module.exports = (robot) ->
-  robot.hear /qemu/i, troll
+  robot.hear /(QEMU|qemu)/, troll
+  robot.hear /(PHP|php)/i, troll
 
 troll = (msg) ->
     msg.send ':trollface:'
