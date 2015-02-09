@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   fraublucher
+#   frau blucher
 #
 # Author:
 #   Jeff Warner

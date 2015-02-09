@@ -1,5 +1,5 @@
 # Description:
-#   Reacts appropriately to the mention of Frau Blucher
+#   Summons the Duck of Valor.
 #
 # Dependencies:
 #   None
@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   duckofvalor
+#   duck of valor
 #
 # Author:
 #   Ritwik Gupta
