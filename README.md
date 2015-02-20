@@ -43,8 +43,6 @@ Please don't deploy any changes that haven't been pushed to GitHub yet.
 Hubot's behavior on Heroku is configured via several environment variables:
 
     HEROKU_URL:          [...]
-    HUBOT_SLACK_BOTNAME: hubot
-    HUBOT_SLACK_TEAM:    pittcsc
     HUBOT_SLACK_TOKEN:   [...]
 
 Changing any of these variables will require restarting the hubot application.
