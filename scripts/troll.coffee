@@ -1,7 +1,11 @@
 module.exports = (robot) ->
-  robot.hear /(QEMU|qemu)/, troll
-  robot.hear /(PHP|php)/i, troll
-  robot.hear /(emacs)/i, trollmacs
+  robot.hear /\b(QEMU|qemu)\b/, troll()
+  robot.hear /\b(PHP|php)\b/i, troll()
+  robot.hear /\b(emacs)\b/i, troll('*vim :trollface:')
+
+troll = (reply = ':trollface:') ->
+  (msg) ->
+    msg.send reply
 
 troll = (msg) ->
     msg.send ':trollface:'
