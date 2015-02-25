@@ -1,10 +1,14 @@
 module.exports = (robot) ->
-  ROOMS = ['#website']
+  ROOMS =
+    'pitt-csc.github.io': '#website'
+    'steelhacks.com': 'steelhacks'
 
   receivePageBuild = (details) ->
-    if {build, repository, error} = details
-      message = generatePageBuildMessage({build, repository, error})
-      robot.messageRoom(room, message) for room in ROOMS
+    {repository} = details
+
+    if room = ROOMS[repository.name]
+      message = generatePageBuildMessage(details)
+      robot.messageRoom(room, message)
 
   generatePageBuildMessage = ({build, repository, error}) ->
     pusher = build.pusher.login
