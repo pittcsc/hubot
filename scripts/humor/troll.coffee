@@ -1,6 +1,6 @@
 module.exports = (robot) ->
   robot.hear /\b(QEMU|qemu)\b/, troll
-  robot.hear /\b(emacs)\b/i, trollmacs
+  robot.hear /\bemacs\b/i, trollmacs
 
 troll = (msg) ->
     msg.send ':trollface:'
