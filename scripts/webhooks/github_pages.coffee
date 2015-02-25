@@ -28,7 +28,7 @@ module.exports = (robot) ->
       else
         "GitHub Pages build finished with unknown status for `#{repository.full_name}` at `#{commit}` by #{pusher}."
 
-  robot.router.post '/hubot/github_webhook', (req, res) ->
+  robot.router.post "/#{robot.name}/webhooks/github_pages", (req, res) ->
     if req.is('json')
       switch req.header('X-GitHub-Event')
         when 'page_build' then receivePageBuild(req.body)
