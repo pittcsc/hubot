@@ -3,6 +3,5 @@
   "announce.coffee",
   "xkcd.coffee",
   "ascii.coffee",
-  "base64.coffee",
-  "cumberbatch.coffee"
+  "base64.coffee"
 ]
