@@ -13,11 +13,9 @@
 #   hubot summon ritwik
 
 module.exports = (robot) ->
-  robot.respond /summon the wikman/i, (msg) ->
-      msg.send "http://i.imgur.com/tQIZjdr.jpg @ritwik"
+  robot.respond /summon the wikman/i, signal
+  robot.respond /use the wik signal/i, signal
+  robot.respond /summon ritwik/i, signal
 
-  robot.respond /use the wik signal/i, (msg) ->
-      msg.send "http://i.imgur.com/tQIZjdr.jpg @ritwik"
-
-  robot.respond /summon ritwik/i, (msg) ->
-      msg.send "http://i.imgur.com/tQIZjdr.jpg @ritwik"
+signal = (msg) ->
+  msg.send "http://i.imgur.com/tQIZjdr.jpg <@U02JT58NK>"
