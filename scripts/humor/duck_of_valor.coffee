@@ -16,4 +16,4 @@
 
 module.exports = (robot) ->
   robot.hear /duck of valor/i, (msg) ->
-    msg.send "http://i.imgur.com/MoiShv2.png"
+    msg.send "http://i.imgur.com/1m7IwC5.png"
