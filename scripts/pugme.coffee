@@ -31,4 +31,3 @@ module.exports = (robot) ->
     msg.http("http://pugme.herokuapp.com/count")
       .get() (err, res, body) ->
         msg.send "There are #{JSON.parse(body).pug_count} pugs."
-

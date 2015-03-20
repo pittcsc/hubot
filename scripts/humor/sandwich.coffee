@@ -1,5 +1,5 @@
 # Description:
-#   Corrects users on the proper use of Hubot
+#   Makes the user a sandwich
 #
 # Dependencies:
 #   None
@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   hubot .*
+#   sudo make me a sandwich
 #
 # Author:
 #   Jeff Warner
