@@ -23,6 +23,8 @@ module.exports = (robot) ->
       msg.send "Go home, Will. You're drunk."
     else
       count = msg.match[2] || 5
+      count = if count <= 15 then count else 15
+
       msg.http("http://pugme.herokuapp.com/bomb?count=" + count)
         .get() (err, res, body) ->
           msg.send pug for pug in JSON.parse(body).pugs
@@ -31,4 +33,3 @@ module.exports = (robot) ->
     msg.http("http://pugme.herokuapp.com/count")
       .get() (err, res, body) ->
         msg.send "There are #{JSON.parse(body).pug_count} pugs."
-
