@@ -15,5 +15,5 @@
 #
 
 module.exports = (robot) ->
-  robot.hear /^hubot/i, (msg) ->
+  robot.hear /^hubot .+/i, (msg) ->
     msg.send "Sorry, I'm not Hubot. Try `sudo`!"
