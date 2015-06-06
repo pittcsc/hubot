@@ -1,0 +1,6 @@
+{
+  "handy": {
+    "provider": "capistrano",
+    "repository": "Pitt-CSC/handy"
+  }
+}
