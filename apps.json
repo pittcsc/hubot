@@ -1,6 +1,7 @@
 {
   "handy": {
     "provider": "bundler_capistrano",
-    "repository": "Pitt-CSC/handy"
+    "repository": "Pitt-CSC/handy",
+    "allowed_rooms": "#handy"
   }
 }
